@@ -18,5 +18,5 @@
     });
   }
 
-  root.SearchResults = { render: renderSearchResults };
+  root.searchResults = { render: renderSearchResults };
 })(window.LME = window.LME || {});

@@ -55,7 +55,7 @@
     document.body.appendChild(sidebar);
 
     const searchInput = sidebar.querySelector("#lme-search-input");
-    const onSearchInput = root.debounce(() => {
+    const onSearchInput = root.dom.debounce(() => {
       const query = searchInput.value.trim();
       if (!query) {
         renderSidebarList();
@@ -75,7 +75,7 @@
     sidebar.querySelector("#lme-collapse-button").addEventListener("click", () => {
       sidebar.classList.toggle("lme-collapsed");
       root.state.settings.sidebarOpen = !sidebar.classList.contains("lme-collapsed");
-      root.saveSettings(root.state.settings);
+      root.storage.saveSettings(root.state.settings);
     });
 
     wireResize(sidebar);
@@ -113,7 +113,7 @@
       document.removeEventListener("mousemove", resize);
       const width = Math.round(sidebar.getBoundingClientRect().width);
       root.state.settings.sidebarWidth = width;
-      root.saveSettings(root.state.settings);
+      root.storage.saveSettings(root.state.settings);
     }
   }
 
@@ -122,7 +122,7 @@
     if (sidebar?.classList.contains("lme-collapsed")) {
       sidebar.classList.remove("lme-collapsed");
       root.state.settings.sidebarOpen = true;
-      root.saveSettings(root.state.settings);
+      root.storage.saveSettings(root.state.settings);
     }
     const input = document.getElementById("lme-search-input");
     input?.focus();

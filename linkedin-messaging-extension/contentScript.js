@@ -27,6 +27,70 @@
     return LME.currentConversationId;
   };
 
+  LME.getTagById = function getTagById(tagId) {
+    return LME.state.tags.find((tag) => tag.id === tagId);
+  };
+
+  LME.renderTagPill = function renderTagPill(tag) {
+    return `<span class="lme-pill" style="--lme-tag-color: ${LME.dom.escapeAttr(tag.color)}">${LME.dom.escapeHtml(tag.label)}</span>`;
+  };
+
+  LME.getReminderClass = function getReminderClass(reminder) {
+    if (!reminder || reminder.isDone || !reminder.dueTs) return "";
+    const due = new Date(reminder.dueTs);
+    const today = new Date();
+    if (reminder.dueTs < Date.now()) return "lme-reminder-overdue";
+    if (due.toDateString() === today.toDateString()) return "lme-reminder-today";
+    return "lme-reminder-upcoming";
+  };
+
+  LME.formatReminder = function formatReminder(dueTs) {
+    const due = new Date(dueTs);
+    const today = new Date();
+    if (due.toDateString() === today.toDateString()) return "Today";
+    return due.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+  };
+
+  LME.renderConversationRow = function renderConversationRow(conversation, className) {
+    const tags = (conversation.tags || []).map((tagId) => LME.getTagById(tagId)).filter(Boolean).slice(0, 3);
+    const reminder = LME.state.reminders?.[conversation.id];
+    const reminderClass = LME.getReminderClass(reminder);
+    const note = conversation.note
+      ? `<span class="lme-sidebar-note">${LME.dom.escapeHtml(conversation.note).slice(0, 120)}</span>`
+      : "";
+    const reminderText = reminder && !reminder.isDone
+      ? `<span class="lme-sidebar-reminder ${reminderClass}">${LME.formatReminder(reminder.dueTs)}</span>`
+      : "";
+    return `
+      <button class="${className} ${reminderClass}" type="button" data-conversation-id="${LME.dom.escapeAttr(conversation.id)}">
+        <span class="lme-sidebar-name">${LME.dom.escapeHtml(conversation.name || "LinkedIn conversation")}</span>
+        <span class="lme-sidebar-meta">${tags.map((tag) => LME.renderTagPill(tag)).join("")}${reminderText}</span>
+        ${note}
+      </button>
+    `;
+  };
+
+  LME.searchConversations = function searchConversations(query) {
+    return LME.search.searchConversations(query, LME.searchIndex);
+  };
+
+  LME.saveSettings = function saveSettings(settings) {
+    return LME.storage.saveSettings(settings);
+  };
+
+  LME.ensureConversation = function ensureConversation(conversationId) {
+    if (!LME.state.conversations[conversationId]) {
+      LME.state.conversations[conversationId] = LME.conversationId.extractConversationDetails(conversationId);
+    }
+    return LME.state.conversations[conversationId];
+  };
+
+  LME.navigateToConversation = function navigateToConversation(conversationId) {
+    const conversation = LME.state.conversations?.[conversationId];
+    const target = conversation?.threadUrl || LME.conversationId.getConversationUrl(conversationId);
+    if (target) window.location.href = target;
+  };
+
   let routeObserver = null;
   let reminderTimer = null;
   let lastUrl = location.href;

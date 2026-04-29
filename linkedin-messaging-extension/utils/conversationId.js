@@ -41,7 +41,20 @@
     return `/messaging/thread/${encodeURIComponent(raw)}/`;
   }
 
+  function extractConversationDetails(conversationId) {
+    const heading = document.querySelector('main h1, main h2, [role="main"] h1, [role="main"] h2');
+    const profileLink = document.querySelector('main a[href*="/in/"], [role="main"] a[href*="/in/"]');
+    return {
+      id: conversationId,
+      name: heading?.textContent?.trim() || profileLink?.textContent?.trim() || "LinkedIn conversation",
+      profileUrl: profileLink?.href || "",
+      threadUrl: getConversationUrl(conversationId),
+      lastSeen: Date.now(),
+    };
+  }
+
   root.conversationId = {
+    extractConversationDetails,
     getCurrentConversationId,
     getConversationUrl,
   };
