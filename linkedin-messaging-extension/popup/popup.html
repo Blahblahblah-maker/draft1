@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LinkedIn Message Manager</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main>
+      <h1>LinkedIn Message Manager</h1>
+      <p>Keyboard-first tags, notes, reminders, and search for LinkedIn messaging.</p>
+
+      <label>
+        Default reminder days
+        <input id="default-days" type="number" min="1" max="30" />
+      </label>
+
+      <div class="actions">
+        <button id="export-data" type="button">Export data</button>
+        <button id="clear-old" type="button">Clear 180d+ old</button>
+      </div>
+
+      <p id="status" role="status"></p>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>
