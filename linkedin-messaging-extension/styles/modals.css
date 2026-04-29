@@ -1,0 +1,199 @@
+#lme-toast {
+  position: fixed;
+  right: 300px;
+  bottom: 24px;
+  z-index: 2147483647;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #111827;
+  color: #fff;
+  font-size: 13px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+#lme-toast.lme-toast-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.lme-modal-shell {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483646;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 300px 96px 24px;
+  background: rgba(17, 24, 39, 0.08);
+  backdrop-filter: blur(2px);
+}
+
+.lme-modal {
+  position: relative;
+  width: min(420px, calc(100vw - 48px));
+  max-height: min(720px, calc(100vh - 140px));
+  overflow: auto;
+  padding: 18px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  color: #111827;
+  animation: lme-modal-in 120ms ease-out both;
+}
+
+.lme-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 999px;
+  background: #f3f4f6;
+  color: #4b5563;
+  cursor: pointer;
+}
+
+.lme-modal-title {
+  margin: 0 32px 14px 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.lme-modal-input,
+.lme-modal textarea,
+.lme-modal input[type="date"],
+.lme-modal input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 10px 11px;
+  font: inherit;
+  outline: none;
+}
+
+.lme-modal-input:focus,
+.lme-modal textarea:focus,
+.lme-modal input:focus {
+  border-color: #0a66c2;
+  box-shadow: 0 0 0 3px rgba(10, 102, 194, 0.12);
+}
+
+.lme-tag-suggestions {
+  display: grid;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.lme-tag-option {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  padding: 9px 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.lme-tag-option[data-active="true"],
+.lme-tag-option:hover {
+  background: #f3f4f6;
+}
+
+.lme-check {
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--tag-color) 18%, #fff);
+  color: var(--tag-color);
+  font-weight: 700;
+}
+
+.lme-new-tag {
+  margin-left: auto;
+  color: #6b7280;
+  font-size: 11px;
+}
+
+.lme-selected-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.lme-selected-pill {
+  border: 0;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--tag-color) 15%, #fff);
+  color: var(--tag-color);
+  padding: 4px 9px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.lme-modal-hint {
+  margin: 12px 0 0;
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.lme-modal textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.lme-note-footer,
+.lme-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.lme-note-footer button,
+.lme-modal-actions button,
+.lme-reminder-options button {
+  border: 1px solid #d1d5db;
+  border-radius: 999px;
+  background: #fff;
+  padding: 7px 11px;
+  cursor: pointer;
+}
+
+.lme-modal-actions .lme-primary {
+  border-color: #0a66c2;
+  background: #0a66c2;
+  color: #fff;
+}
+
+.lme-count-warn {
+  color: #b45309;
+  font-weight: 700;
+}
+
+.lme-field-label {
+  display: block;
+  margin: 12px 0 6px;
+  color: #4b5563;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.lme-reminder-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}

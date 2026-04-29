@@ -1,0 +1,59 @@
+.lme-inbox-meta {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 4px 8px 0 12px;
+  min-height: 18px;
+  pointer-events: none;
+}
+
+.lme-pill {
+  background: color-mix(in srgb, var(--tag-color, #6b7280) 15%, transparent);
+  border-radius: 999px;
+  color: var(--tag-color, #6b7280);
+  display: inline-flex;
+  font-size: 11px;
+  font-weight: 700;
+  height: 18px;
+  line-height: 18px;
+  max-width: 104px;
+  overflow: hidden;
+  padding: 0 7px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lme-pill-more {
+  --tag-color: #6b7280;
+}
+
+.lme-note-dot {
+  background: #0a66c2;
+  border-radius: 50%;
+  display: inline-block;
+  height: 6px;
+  margin-left: 2px;
+  width: 6px;
+}
+
+.lme-clock {
+  color: #f59e0b;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.lme-decorated-thread.lme-reminder-today,
+.lme-sidebar-row.lme-reminder-today {
+  border-left: 3px solid #f59e0b !important;
+}
+
+.lme-decorated-thread.lme-reminder-upcoming,
+.lme-sidebar-row.lme-reminder-upcoming {
+  border-left: 3px solid rgba(245, 158, 11, 0.55) !important;
+}
+
+.lme-decorated-thread.lme-reminder-overdue,
+.lme-sidebar-row.lme-reminder-overdue {
+  border-left: 3px solid #ef4444 !important;
+}
